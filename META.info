@@ -1,1 +1,1 @@
-{ "version" : "0.0.0", "depends" : [ "JSON::Tiny" ] }
+{ "version" : "0.0.1", "depends" : [ "JSON::Tiny" ] }
