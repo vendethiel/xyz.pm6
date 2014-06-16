@@ -20,12 +20,12 @@ multi MAIN(Str :$file = 'META.info', Bool :$major, Bool :$minor, Bool :$patch) {
 sub git-update(Str $file, Str $version) {
   qqx/git add '$file'/;
   qqx/git commit -m "Version $version"/;
-  qqx/git tag --annotate '$version' --message "Version $version"/;
-  qqx[git push origin 'refs/heads/master' 'refs/tags/$version'];
+  qqx/git tag --annotate "$version" --message "Version $version"/;
+  qqx[git push origin "refs/heads/master" "refs/tags/$version"];
   say "Tagged and pushed new version";
   # TODO something with cpan ?
 }
 
 sub increment($version, @els) {
-  $version.split('.').map(* + @els[(state $a)++].Int).join('.');
+  $version.split('.').map({any(@els[0..(state $)++]) ?? ( (state $)++ ?? 0 !! $_ + 1 ) !! $_}).join('.');
 }
