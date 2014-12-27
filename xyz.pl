@@ -28,5 +28,5 @@ sub git-update(Str $file, Str $version) {
 
 sub increment($version, @els) {
   # any(...) to see if we've reached a `True` somewhere. If so, and if it's the first, then increment. Otherwise, zero it.
-  $version.split('.').map({any(@els[0..(state $)++]) ?? ( (state $)++ ?? 0 !! $_ + 1 ) !! $_}).join('.');
+  $version.split('.').map({any(@els[0..$++]) ?? ( $++ ?? 0 !! $_ + 1 ) !! $_}).join('.');
 }
